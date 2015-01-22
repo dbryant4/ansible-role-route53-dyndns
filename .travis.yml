@@ -20,6 +20,9 @@ install:
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
+  - 'mkdir -p /etc/ansible/facts.d'
+  - "echo '{ \"access_key\":\"AWS_ACCESS_KEY\", \"secret_key\":\"AWS_SECRET_KEY\" }' > /etc/ansible/facts.d/aws.fact"
+
 script:
   # Check the role/playbook's syntax.
   - 'ansible-playbook -i tests/hosts tests/test.yml --syntax-check'
