@@ -1,0 +1,4 @@
+---
+route53_dyndns_record: 'home.example.com'
+route53_dyndns_git_url: 'https://github.com/JacobSanford/route-53-dyndns.git'
+route53_dyndns_destination_path: '/root/route53-dyndns'

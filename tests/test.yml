@@ -1,0 +1,5 @@
+---
+- hosts: route53-dyndns-servers
+  gather_facts: yes
+  roles:
+    - ansible-role-route53-dyndns

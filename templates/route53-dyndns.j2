@@ -1,0 +1,10 @@
+#! /bin/bash
+# Managed by Ansible
+
+export AWS_ACCESS_KEY_ID="{{
+ansible_local.aws.access_key|default('AWS_KEY_ID_HERE') }}"
+export AWS_SECRET_ACCESS_KEY="{{
+ansible_local.aws.secret_key|default('AWS_SECRET_KEY_HERE') }}"
+
+/usr/bin/python {{ route53_dyndns_destination_path }}/r53dyndns.py -R
+"{{ route53_dyndns_record }}" -U "http://ifconfig.me/ip"
