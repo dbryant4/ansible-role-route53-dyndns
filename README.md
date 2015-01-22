@@ -61,5 +61,11 @@ in an attempt to keep things simple. This role will create a script
 which sets AWS credentials and runs the route53-dyndns.py script every
 hour. This should be good enough for most users.
 
+This role does not manage deploying AWS credentials. This role assumes
+the AWS credentials will be available in the fact `ansible_local.aws`.
+It is left up to the user to figure out the best way to deploy AWS
+credntials. One suggestion is to use [Ansible
+Vault](http://docs.ansible.com/playbooks_vault.html#id4).
+
 ## Tests
 This role includes Travis CI tests.
