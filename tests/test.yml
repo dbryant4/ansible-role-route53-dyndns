@@ -1,5 +1,23 @@
 ---
-- hosts: route53-dyndns-servers
+- hosts: all
   gather_facts: yes
+
+  pre_tasks:
+    - apt: update_cache=yes
+    - apt: name=python-pip
+    - apt: name=git
+
   roles:
     - ansible-role-route53-dyndns
+
+  post_tasks:
+  - stat: 'path=/etc/cron.hourly/route53-dyndns'
+    register: cron_script
+    changed_when: False
+
+  - command: 'cat /etc/cron.hourly/route53-dyndns'
+    changed_when: False
+
+  - assert:
+      that:
+        - 'cron_script.stat.exists'
